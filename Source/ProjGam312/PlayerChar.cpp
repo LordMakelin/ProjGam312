@@ -103,13 +103,13 @@ void APlayerChar::FindObject()
 	FVector EndLocation = StartLocation + Direction;
 
 	FCollisionQueryParams QueryParams;
-	QueryParams.AddIgnoredActor(this);
+	QueryParams.AddIgnoredActor(this); //ignores player object
 	QueryParams.bTraceComplex = true;
 	QueryParams.bReturnFaceIndex = true;
 
 	if (!isBuilding)
 	{
-		if (GetWorld()->LineTraceSingleByChannel(HitResult, StartLocation, EndLocation, ECC_Visibility, QueryParams))
+		if (GetWorld()->LineTraceSingleByChannel(HitResult, StartLocation, EndLocation, ECC_Visibility, QueryParams)) //If raycast hits a resource
 		{
 			AResource_M* HitResource = Cast<AResource_M>(HitResult.GetActor());
 
